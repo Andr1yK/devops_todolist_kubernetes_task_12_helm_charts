@@ -34,3 +34,6 @@ todoapp:
     maxReplicas: 5
     cpuUtilization: 70
     memoryUtilization: 70
+
+  pv:
+    storage: 1Gi
