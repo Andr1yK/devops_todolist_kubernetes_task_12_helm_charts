@@ -32,3 +32,5 @@ todoapp:
   hpa:
     minReplicas: 2
     maxReplicas: 5
+    cpuUtilization: 70
+    memoryUtilization: 70
