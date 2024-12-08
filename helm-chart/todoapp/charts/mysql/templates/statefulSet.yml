@@ -67,28 +67,38 @@ spec:
         configMap:
           name: {{ .Chart.Name }}-config
       tolerations:
-      - key: "app"
+      {{- with .Values.mysql.toleration }}
+      - key: {{ .key }}
         operator: "Equal"
-        value: "mysql"
-        effect: "NoSchedule"
+        value: {{ .value }}
+        effect: {{ .effect }}
+      {{- end }}
       affinity:
         podAntiAffinity:
+          {{- with .Values.mysql.podAntiAffinity }}
           requiredDuringSchedulingIgnoredDuringExecution:
             - labelSelector:
                 matchExpressions:
-                  - key: "app"
+                  - key: {{ .key }}
                     operator: In
                     values:
-                    - mysql
-              topologyKey: "kubernetes.io/hostname"
+                    {{- range .values }}
+                      - {{ . }}
+                    {{ end }}
+              topologyKey: {{ .topologyKey }}}
+          {{- end }}
         nodeAffinity:
+          {{- with .Values.mysql.nodeAffinity }}
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
               - matchExpressions:
-                  - key: "app"
-                    operator: In
-                    values:
-                    - "mysql"
+                - key: {{ .key }}
+                  operator: In
+                  values:
+                  {{- range .values }}
+                  - {{ . }}
+                  {{ end }}
+          {{- end }}
   volumeClaimTemplates:
   - metadata:
       name: data

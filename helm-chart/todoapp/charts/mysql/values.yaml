@@ -15,3 +15,20 @@ mysql:
 
   pvc:
     storageRequests: 2Gi
+
+  toleration:
+    key: "app"
+    value: "mysql"
+    effect: "NoSchedule"
+
+  nodeAffinity:
+    key: "app"
+    values:
+      - "mysql"
+
+  podAntiAffinity:
+    key: "app"
+    topologyKey: "kubernetes.io/hostname"
+    values:
+      - "mysql"
+
