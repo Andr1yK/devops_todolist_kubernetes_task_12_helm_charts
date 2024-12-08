@@ -15,3 +15,7 @@ todoapp:
     memory:
       request: "256Mi"
       limit: "256Mi"
+
+  rollingUpdate:
+    maxSurge: 1
+    maxUnavailable: 1

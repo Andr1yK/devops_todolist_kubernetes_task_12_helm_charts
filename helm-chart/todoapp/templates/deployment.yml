@@ -7,8 +7,8 @@ spec:
   strategy:
     type: RollingUpdate
     rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 1
+      maxSurge: {{ .Values.todoapp.rollingUpdate.maxSurge }}
+      maxUnavailable: {{ .Values.todoapp.rollingUpdate.maxUnavailable }}
   selector:
     matchLabels:
       app: todoapp
@@ -30,13 +30,15 @@ spec:
         - name: app-config-volume
           mountPath: "/app/configs"
           readOnly: true
+        {{- with .Values.todoapp.resources }}
         resources:
           requests:
-            memory: {{ .Values.todoapp.resources.memory.request }}
-            cpu:  {{ .Values.todoapp.resources.cpu.request }}
+            memory: {{ .memory.request }}
+            cpu:  {{ .cpu.request }}
           limits:
-            memory: {{ .Values.todoapp.resources.memory.limit }}
-            cpu: {{ .Values.todoapp.resources.cpu.limit }}
+            memory: {{ .memory.limit }}
+            cpu: {{ .cpu.limit }}
+        {{- end }}
         env:
         - name: PYTHONUNBUFFERED
           valueFrom:
