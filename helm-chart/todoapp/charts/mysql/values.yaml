@@ -8,3 +8,7 @@ mysql:
 
   statefulSet:
     replicas: 2
+
+  image:
+    repository: "mysql"
+    tag: "8.0"
