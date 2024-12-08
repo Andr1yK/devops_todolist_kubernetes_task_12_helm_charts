@@ -47,9 +47,11 @@ spec:
         - name: config-map
           mountPath: /docker-entrypoint-initdb.d
         resources:
+          {{- with .Values.mysql.resources }}
           requests:
-            cpu: 500m
-            memory: 1Gi
+            cpu: {{ .cpu.request }}
+            memory: {{ .memory.request }}
+          {{- end }}
         livenessProbe:
           exec:
             command: ["mysqladmin", "ping"]

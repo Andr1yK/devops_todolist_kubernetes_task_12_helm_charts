@@ -9,6 +9,12 @@ mysql:
   statefulSet:
     replicas: 2
 
+  resources:
+    cpu:
+      request: "500m"
+    memory:
+      request: "1Gi"
+
   image:
     repository: "mysql"
     tag: "8.0"
