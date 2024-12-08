@@ -77,7 +77,7 @@ spec:
           secretName: {{ .Chart.Name }}-secret
       - name: app-config-volume
         configMap:
-          name: app-config
+          name: {{ .Chart.Name }}-config
       affinity:
         {{- with .Values.todoapp.nodeAffinity }}
         nodeAffinity:

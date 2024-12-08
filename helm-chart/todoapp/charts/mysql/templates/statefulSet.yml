@@ -87,7 +87,7 @@ spec:
                     {{- range .values }}
                       - {{ . }}
                     {{ end }}
-              topologyKey: {{ .topologyKey }}}
+              topologyKey: {{ .topologyKey }}
           {{- end }}
         nodeAffinity:
           {{- with .Values.mysql.nodeAffinity }}
