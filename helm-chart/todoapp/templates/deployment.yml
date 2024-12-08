@@ -20,7 +20,9 @@ spec:
       serviceAccountName: {{ .Chart.Name }}-secrets-reader
       containers:
       - name: todoapp
-        image: ikulyk404/todoapp:4.0.1
+        {{- with .Values.todoapp.image }}
+        image: {{ .repository }}:{{ .tag }}
+        {{- end }}
         volumeMounts:
         - name: data
           mountPath: /app/data

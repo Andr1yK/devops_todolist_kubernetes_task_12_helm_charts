@@ -1,6 +1,10 @@
 namespace: todoapp
 
 todoapp:
+  image:
+    repository: "ikulyk404/todoapp"
+    tag: "4.0.1"
+
   secrets:
     SECRET_KEY: "@e2(yx)v&tgh3_s=0yja-i!dpebxsz^dg47x)-k&kq_3zf*9e*"
     DB_NAME: "app_db"
