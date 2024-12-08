@@ -7,3 +7,11 @@ todoapp:
     DB_USER: "app_user"
     DB_PASSWORD: "1234"
     DB_HOST: "mysql-0.mysql.mysql.svc.cluster.local"
+
+  resources:
+    cpu:
+      request: "150m"
+      limit: "150m"
+    memory:
+      request: "256Mi"
+      limit: "256Mi"

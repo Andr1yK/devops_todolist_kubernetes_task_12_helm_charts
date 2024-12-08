@@ -32,11 +32,11 @@ spec:
           readOnly: true
         resources:
           requests:
-            memory: "256Mi"
-            cpu: "150m"
+            memory: {{ .Values.todoapp.resources.memory.request }}
+            cpu:  {{ .Values.todoapp.resources.cpu.request }}
           limits:
-            memory: "256Mi"
-            cpu: "150m"
+            memory: {{ .Values.todoapp.resources.memory.limit }}
+            cpu: {{ .Values.todoapp.resources.cpu.limit }}
         env:
         - name: PYTHONUNBUFFERED
           valueFrom:
