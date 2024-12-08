@@ -28,3 +28,7 @@ todoapp:
     key: "app"
     values:
       - "kube2py"
+
+  hpa:
+    minReplicas: 2
+    maxReplicas: 5
