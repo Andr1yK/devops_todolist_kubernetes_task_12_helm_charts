@@ -37,3 +37,9 @@ todoapp:
 
   pv:
     storage: 1Gi
+
+  pvc:
+    storageRequests: 1Gi
+
+  rbac:
+    serviceAccountName: "todoapp-secrets-reader"

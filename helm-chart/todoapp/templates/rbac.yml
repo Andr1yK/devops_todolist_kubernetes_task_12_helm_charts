@@ -1,7 +1,7 @@
 kind: ServiceAccount
 apiVersion: v1
 metadata:
-  name: {{ .Chart.Name }}-secrets-reader
+  name: {{ .Values.todoapp.rbac.serviceAccountName }}
   namespace: {{ .Values.namespace }}
 
 ---
@@ -23,7 +23,7 @@ metadata:
   namespace: {{ .Values.namespace }}
 subjects:
 - kind: ServiceAccount
-  name: {{ .Chart.Name }}-secrets-reader
+  name: {{ .Values.todoapp.rbac.serviceAccountName }}
 roleRef:
   kind: Role
   name: {{ .Chart.Name }}-secrets-reader

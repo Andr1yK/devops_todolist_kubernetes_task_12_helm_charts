@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Chart.Name }}-deployment
+  name: {{ .Chart.Name }}
   namespace: {{ .Values.namespace }}
 spec:
   strategy:
@@ -17,7 +17,7 @@ spec:
       labels:
         app: todoapp
     spec:
-      serviceAccountName: {{ .Chart.Name }}-secrets-reader
+      serviceAccountName: {{ .Values.todoapp.rbac.serviceAccountName }}
       containers:
       - name: todoapp
         {{- with .Values.todoapp.image }}
