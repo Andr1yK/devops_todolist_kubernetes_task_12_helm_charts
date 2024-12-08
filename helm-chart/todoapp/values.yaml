@@ -23,3 +23,8 @@ todoapp:
   rollingUpdate:
     maxSurge: 1
     maxUnavailable: 1
+
+  nodeAffinity:
+    key: "app"
+    values:
+      - "kube2py"

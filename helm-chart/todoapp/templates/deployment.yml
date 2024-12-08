@@ -79,12 +79,16 @@ spec:
         configMap:
           name: app-config
       affinity:
+        {{- with .Values.todoapp.nodeAffinity }}
         nodeAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
-          - weight: 1
-            preference:
-              matchExpressions:
-              - key: app
-                operator: In
-                values:
-                - kube2py
+            - weight: 1
+              preference:
+                matchExpressions:
+                  - key: {{ .key }}
+                    operator: In
+                    values:
+                    {{- range .values }}
+                    - {{ . }}
+                    {{- end }}
+        {{- end }}
