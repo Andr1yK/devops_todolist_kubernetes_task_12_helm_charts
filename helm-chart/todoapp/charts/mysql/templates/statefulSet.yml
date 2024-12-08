@@ -1,14 +1,14 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: mysql
+  name: {{ .Chart.Name }}
   namespace: {{ .Values.namespace }}
 spec:
   selector:
     matchLabels:
       app: mysql
   replicas: 2
-  serviceName: mysql
+  serviceName: {{ .Chart.Name }}-service
   template:
     metadata:
       labels:
@@ -63,7 +63,7 @@ spec:
       volumes:
       - name: config-map
         configMap:
-          name: mysql
+          name: {{ .Chart.Name }}-config
       tolerations:
       - key: "app"
         operator: "Equal"
